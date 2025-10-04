@@ -12,15 +12,14 @@ Extension officer dashboard for AI-powered agricultural advisory system.
 ## Getting Started
 
 ```bash
+npm install
 npm run dev
 ```
 
 Open [http://localhost:3002](http://localhost:3002) to view the dashboard.
-
 
 ## Tech Stack
 
 - Next.js 14
 - TypeScript
 - Tailwind CSS
-
