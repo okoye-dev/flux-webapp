@@ -1,0 +1,13 @@
+export type LinkData = {
+  slug: string;
+  link: string;
+  date: string;
+  clicks: number;
+  createdAt: string;
+  // Farmer-specific properties
+  name?: string;
+  phone?: string;
+  location?: string;
+  cropType?: string;
+  farmSize?: string;
+};
