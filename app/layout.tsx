@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import "./globals.css";
 import localFont from "next/font/local";
 import Navbar from "@/components/Navbar";
-
-export const metadata: Metadata = {
-  title: "Flux - Extension Officer Dashboard",
-  description: "AI-powered agricultural advisory system for extension officers",
-};
+import { Toaster } from "@/components/ui/toaster";
+import { cn } from "@/lib/utils";
 
 const generalSans = localFont({
   src: [
@@ -39,11 +39,29 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const isSigninPage = pathname === "/signin";
+  const isSignupPage = pathname === "/signup";
+  const isHomePage = pathname === "/";
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <html lang="en" className={`${generalSans.variable}`}>
-      <body className="relative overflow-x-hidden font-generalSans leading-[1.25rem] tracking-tight text-black">
-        <Navbar />
-        <div className="px-6 md:pl-80">{children}</div>
+      <body 
+        className={cn(
+          "relative overflow-x-hidden font-generalSans leading-[1.25rem] tracking-tight text-black", 
+          (isSigninPage || isSignupPage) ? "pt-0" : "pt-20",
+          (isHomePage || isSigninPage || isSignupPage) ? "bg-gradient-to-b from-primary/10 to-background" : ""
+        )}
+      >
+        <Navbar className={(isSigninPage || isSignupPage) ? "hidden" : ""} />
+        <div className="max-w-[1440px] mx-auto px-6">
+          {children}
+          <Toaster />
+        </div>
       </body>
     </html>
   );

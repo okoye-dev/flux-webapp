@@ -1,31 +1,72 @@
 "use client";
-import React, { FC, useState } from "react";
-import logo from "@/app/assets/logo.jpg";
-import menu from "@/app/assets/menu.svg";
-import profilePic from "@/app/assets/profile-pic.svg";
-import arrowDown from "@/app/assets/arrow-down.svg";
-import arrowUp from "@/app/assets/arrow-up.svg";
-import Image from "next/image";
-import Link from "next/link";
-import DisconnectModal from "./DisconnectModal";
-import SideNav from "@/components/SideNav";
+import React, { FC } from "react";
+// import logo from "@/app/assets/logo.jpg";
+// import menu from "@/app/assets/menu.svg";
+// import profilePic from "@/app/assets/profile-pic.svg";
+// import arrowDown from "@/app/assets/arrow-down.svg";
+// import arrowUp from "@/app/assets/arrow-up.svg";
+// import Image from "next/image";
+// import Link from "next/link";
+// import DisconnectModal from "./DisconnectModal";
+// import SideNav from "@/components/SideNav";
+import { cn } from "@/lib/utils";
+import { usePathname, useRouter } from "next/navigation";
+import { Button } from "./ui/button";
+import { LogOut, Settings } from "lucide-react";
+import { useToast } from "@/hooks/useToast";
 
-interface IProps {}
+interface IProps {
+  className?: string;
+}
 
-const Navbar: FC<IProps> = () => {
-  const [disconnectModal, setDisconnectModal] = useState(false);
+const Navbar: FC<IProps> = ({ className }: IProps) => {
+  // const [disconnectModal, setDisconnectModal] = useState(false);
 
-  const toggleDisconnectModal = () => setDisconnectModal(!disconnectModal);
+  // const toggleDisconnectModal = () => setDisconnectModal(!disconnectModal);
 
-  const [navOpen, setNavOpen] = useState(false);
+  // const [navOpen, setNavOpen] = useState(false);
 
-  const toggleNav = () => {
-    setNavOpen(!navOpen);
+  // const toggleNav = () => {
+  //   setNavOpen(!navOpen);
+  // };
+  const router = useRouter();
+  const { toast } = useToast();
+  const pathname = usePathname();
+
+  const isAdminPage = pathname === "/admin";
+
+  const handleLogout = () => {
+    localStorage.clear();
+    toast({
+      title: "Logged out",
+      description: "You've been successfully logged out.",
+    });
+    router.push("/");
   };
 
   return (
     <>
-      <nav className="sticky top-0 z-50 mb-8 w-full bg-background px-6 py-4 md:pt-0">
+      <header className={cn("w-full bg-card border-b border-border fixed top-0 left-0 z-10 shadow-sm", className)}>
+        <div className="max-w-[1440px] mx-auto px-10 py-4 flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-primary">🌾 FarmAdvisor</h1>
+            <p className="text-sm text-muted-foreground">{isAdminPage ? "Dashboard & Management" : "AI-Powered Farming Assistant"}</p>
+          </div>
+          {isAdminPage && (
+            <div className="flex gap-2">
+              <Button variant="outline" size="sm">
+                <Settings className="w-4 h-4 mr-2" />
+                Settings
+              </Button>
+              <Button variant="destructive" size="sm" onClick={handleLogout}>
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
+              </Button>
+            </div>
+          )}
+        </div>
+      </header>
+      {/* <nav className="sticky top-0 z-50 mb-8 w-full bg-background px-6 py-4 md:pt-0">
         <div className="flex w-full items-center justify-between md:hidden">
           <Link href="/">
             <Image
@@ -76,7 +117,7 @@ const Navbar: FC<IProps> = () => {
         <section className="relative flex">
           <SideNav navOpen={navOpen} toggleNav={toggleNav} />
         </section>
-      </nav>
+      </nav>*/}
     </>
   );
 };

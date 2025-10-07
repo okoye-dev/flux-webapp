@@ -1,6 +1,7 @@
 "use client";
 import React, { FC, useState } from "react";
-import Input from "./Input"; // Adjust the path as necessary
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 import FarmerRegistrationSuccess from "./FarmerRegistrationSuccess";
 
 interface IProps {
@@ -73,37 +74,45 @@ const NotificationConfigurationForm: FC<IProps> = ({
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 font-medium">
-      <Input
-        placeholder="Enter email address"
-        id="email"
-        label="Email Address"
-        formData={formData.email}
-        handleChange={handleChange}
-      />
+      <div className="space-y-2">
+        <Label htmlFor="email">Email Address</Label>
+        <Input
+          placeholder="Enter email address"
+          id="email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+      </div>
 
-      <Input
-        placeholder="Enter phone number"
-        id="phoneNumber"
-        label="Phone Number"
-        formData={formData.phoneNumber}
-        handleChange={handleChange}
-      />
+      <div className="space-y-2">
+        <Label htmlFor="phoneNumber">Phone Number</Label>
+        <Input
+          placeholder="Enter phone number"
+          id="phoneNumber"
+          value={formData.phoneNumber}
+          onChange={handleChange}
+        />
+      </div>
 
-      <Input
-        placeholder="Enter WhatsApp number"
-        id="whatsappNumber"
-        label="WhatsApp Number"
-        formData={formData.whatsappNumber}
-        handleChange={handleChange}
-      />
-
-      <Input
-        placeholder="Alert types (e.g., High, Medium, Low)"
-        id="alertTypes"
-        label="Alert Types"
-        formData={formData.alertTypes}
-        handleChange={handleChange}
-      />
+      <div className="space-y-2">
+        <Label htmlFor="whatsappNumber">WhatsApp Number</Label>
+        <Input
+          placeholder="Enter WhatsApp number"
+          id="whatsappNumber"
+          value={formData.whatsappNumber}
+          onChange={handleChange}
+        />
+      </div>
+      
+      <div className="space-y-2">
+        <Label htmlFor="alertTypes">Alert Types</Label>
+        <Input
+          placeholder="Alert types (e.g., High, Medium, Low)"
+          id="alertTypes"
+          value={formData.alertTypes}
+          onChange={handleChange}
+        />
+      </div>
 
       <button
         type="submit"
