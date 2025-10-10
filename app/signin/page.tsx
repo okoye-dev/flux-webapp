@@ -16,18 +16,21 @@ const SignIn = () => {
 
   const handleSignIn = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Dummy authentication logic
     if (email && password) {
       localStorage.setItem("isAuthenticated", "true");
-      localStorage.setItem("userRole", email === "admin@farm.com" ? "admin" : "farmer");
+      localStorage.setItem(
+        "userRole",
+        email === "admin@farm.com" ? "admin" : "farmer",
+      );
       localStorage.setItem("userEmail", email);
-      
+
       toast({
         title: "Welcome back!",
         description: "You've successfully signed in.",
       });
-      
+
       if (email === "admin@farm.com") {
         router.push("/admin");
       } else {
@@ -43,11 +46,15 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <div className="flex min-h-screen items-center justify-center px-4">
       <Card className="w-full max-w-md p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2">🌾 FarmAdvisor</h1>
-          <h2 className="text-xl font-semibold text-foreground mb-2">Sign In</h2>
+        <div className="mb-8 text-center">
+          <h1 className="mb-2 text-3xl font-bold text-foreground">
+            🌾 AgroSense
+          </h1>
+          <h2 className="mb-2 text-xl font-semibold text-foreground">
+            Sign In
+          </h2>
           <p className="text-sm text-muted-foreground">
             Enter your credentials to access your account
           </p>
@@ -88,7 +95,7 @@ const SignIn = () => {
             Don&apos;t have an account?{" "}
             <Button
               variant="link"
-              className="p-0 h-auto"
+              className="h-auto p-0"
               onClick={() => router.push("/signup")}
             >
               Sign Up
@@ -96,7 +103,7 @@ const SignIn = () => {
           </p>
         </div>
 
-        <div className="mt-4 p-3 bg-muted/30 rounded-lg">
+        <div className="mt-4 rounded-lg bg-muted/30 p-3">
           <p className="text-xs text-muted-foreground">
             <strong>Demo:</strong> Use any email/password to sign in
             <br />

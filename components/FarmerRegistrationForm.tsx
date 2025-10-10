@@ -44,8 +44,8 @@ const FarmerRegistrationForm: FC<IProps> = ({ onClose, trigger }) => {
 
   const registerFarmer = async () => {
     try {
-      // Extension officer authentication
-      const username = "extension_officer_001";
+      // Farmer authentication
+      const username = "farmer_001";
       const password = "your-password";
       const basicAuth = btoa(`${username}:${password}`);
 

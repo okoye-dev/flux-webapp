@@ -46,20 +46,29 @@ const Navbar: FC<IProps> = ({ className }: IProps) => {
 
   return (
     <>
-      <header className={cn("w-full bg-card border-b border-border fixed top-0 left-0 z-10 shadow-sm", className)}>
-        <div className="max-w-[1440px] mx-auto px-10 py-4 flex items-center justify-between">
+      <header
+        className={cn(
+          "fixed left-0 top-0 z-10 w-full border-b border-border bg-card shadow-sm",
+          className,
+        )}
+      >
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between px-10 py-4">
           <div>
-            <h1 className="text-2xl font-bold text-primary">🌾 FarmAdvisor</h1>
-            <p className="text-sm text-muted-foreground">{isAdminPage ? "Dashboard & Management" : "AI-Powered Farming Assistant"}</p>
+            <h1 className="text-2xl font-bold text-primary">🌾 AgroSense</h1>
+            <p className="text-sm text-muted-foreground">
+              {isAdminPage
+                ? "Dashboard & Management"
+                : "AI-Powered Farming Assistant"}
+            </p>
           </div>
           {isAdminPage && (
             <div className="flex gap-2">
               <Button variant="outline" size="sm">
-                <Settings className="w-4 h-4 mr-2" />
+                <Settings className="mr-2 h-4 w-4" />
                 Settings
               </Button>
               <Button variant="destructive" size="sm" onClick={handleLogout}>
-                <LogOut className="w-4 h-4 mr-2" />
+                <LogOut className="mr-2 h-4 w-4" />
                 Logout
               </Button>
             </div>

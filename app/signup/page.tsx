@@ -1,30 +1,36 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Checkbox } from "@/components/ui/checkbox"
-import { useToast } from "@/hooks/useToast"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { ArrowRight, ArrowLeft, Check } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useToast } from "@/hooks/useToast";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 
 const SignUp = () => {
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(1);
 
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [cropTypes, setCropTypes] = useState<string[]>([])
-  const [location, setLocation] = useState("")
-  const [language, setLanguage] = useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [cropTypes, setCropTypes] = useState<string[]>([]);
+  const [location, setLocation] = useState("");
+  const [language, setLanguage] = useState("");
 
-  const { toast } = useToast()
-  const router = useRouter()
+  const { toast } = useToast();
+  const router = useRouter();
 
   const cropOptions = [
     { id: "rice", label: "Rice" },
@@ -37,74 +43,83 @@ const SignUp = () => {
     { id: "vegetables", label: "Vegetables" },
     { id: "fruits", label: "Fruits" },
     { id: "pulses", label: "Pulses" },
-  ]
+  ];
 
   const handleCropTypeChange = (cropId: string, checked: boolean) => {
     if (checked) {
-      setCropTypes([...cropTypes, cropId])
+      setCropTypes([...cropTypes, cropId]);
     } else {
-      setCropTypes(cropTypes.filter((id) => id !== cropId))
+      setCropTypes(cropTypes.filter((id) => id !== cropId));
     }
-  }
+  };
 
   const handleNextStep = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (name && email && password) {
-      setStep(2)
+      setStep(2);
     } else {
       toast({
         title: "Error",
         description: "Please fill in all fields",
         variant: "destructive",
-      })
+      });
     }
-  }
+  };
 
   const handleSignUp = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (cropTypes.length > 0 && location && language) {
-      localStorage.setItem("isAuthenticated", "true")
-      localStorage.setItem("userRole", "farmer")
-      localStorage.setItem("userEmail", email)
-      localStorage.setItem("userName", name)
-      localStorage.setItem("userCropTypes", JSON.stringify(cropTypes))
-      localStorage.setItem("userLocation", location)
-      localStorage.setItem("userLanguage", language)
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("userRole", "farmer");
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userName", name);
+      localStorage.setItem("userCropTypes", JSON.stringify(cropTypes));
+      localStorage.setItem("userLocation", location);
+      localStorage.setItem("userLanguage", language);
 
       toast({
         title: "Account created!",
-        description: "Welcome to FarmAdvisor!",
-      })
+        description: "Welcome to AgroSense!",
+      });
 
-      router.push("/dashboard")
+      router.push("/dashboard");
     } else {
       toast({
         title: "Error",
-        description: "Please fill in all fields and select at least one crop type",
+        description:
+          "Please fill in all fields and select at least one crop type",
         variant: "destructive",
-      })
+      });
     }
-  }
+  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <div className="flex min-h-screen items-center justify-center px-4">
       <Card className="w-full max-w-md p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2">🌾 FarmAdvisor</h1>
-          <h2 className="text-xl font-semibold text-foreground mb-2">Create Account</h2>
-          <p className="text-sm text-muted-foreground">Join thousands of farmers using AI for better harvests</p>
+        <div className="mb-8 text-center">
+          <h1 className="mb-2 text-3xl font-bold text-foreground">
+            🌾 AgroSense
+          </h1>
+          <h2 className="mb-2 text-xl font-semibold text-foreground">
+            Create Account
+          </h2>
+          <p className="text-sm text-muted-foreground">
+            Join thousands of farmers using AI for better harvests
+          </p>
 
-          <div className="flex items-center justify-center gap-2 mt-6">
+          <div className="mt-6 flex items-center justify-center gap-2">
             <div
-              className={`flex items-center justify-center w-8 h-8 rounded-full ${step >= 1 ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}
+              className={`flex h-8 w-8 items-center justify-center rounded-full ${step >= 1 ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}
             >
               {step > 1 ? <Check className="h-4 w-4" /> : "1"}
             </div>
-            <div className={`h-1 w-12 ${step >= 2 ? "bg-primary" : "bg-muted"}`} />
             <div
-              className={`flex items-center justify-center w-8 h-8 rounded-full ${step >= 2 ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}
+              className={`h-1 w-12 ${step >= 2 ? "bg-primary" : "bg-muted"}`}
+            />
+            <div
+              className={`flex h-8 w-8 items-center justify-center rounded-full ${step >= 2 ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}
             >
               2
             </div>
@@ -114,8 +129,12 @@ const SignUp = () => {
         {step === 1 && (
           <form onSubmit={handleNextStep} className="space-y-4">
             <div className="mb-4">
-              <h3 className="font-semibold text-foreground mb-1">Step 1: Account Details</h3>
-              <p className="text-sm text-muted-foreground">Create your login credentials</p>
+              <h3 className="mb-1 font-semibold text-foreground">
+                Step 1: Account Details
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Create your login credentials
+              </p>
             </div>
 
             <div className="space-y-2">
@@ -163,8 +182,12 @@ const SignUp = () => {
         {step === 2 && (
           <form onSubmit={handleSignUp} className="space-y-4">
             <div className="mb-4">
-              <h3 className="font-semibold text-foreground mb-1">Step 2: Farm Details</h3>
-              <p className="text-sm text-muted-foreground">Help us personalize your experience</p>
+              <h3 className="mb-1 font-semibold text-foreground">
+                Step 2: Farm Details
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Help us personalize your experience
+              </p>
             </div>
 
             <div className="space-y-3">
@@ -175,11 +198,13 @@ const SignUp = () => {
                     <Checkbox
                       id={crop.id}
                       checked={cropTypes.includes(crop.id)}
-                      onCheckedChange={(checked) => handleCropTypeChange(crop.id, checked as boolean)}
+                      onCheckedChange={(checked) =>
+                        handleCropTypeChange(crop.id, checked as boolean)
+                      }
                     />
                     <label
                       htmlFor={crop.id}
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                      className="cursor-pointer text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     >
                       {crop.label}
                     </label>
@@ -221,7 +246,12 @@ const SignUp = () => {
             </div>
 
             <div className="flex gap-3">
-              <Button type="button" variant="outline" onClick={() => setStep(1)} className="w-full">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setStep(1)}
+                className="w-full"
+              >
                 <ArrowLeft className="mr-2 h-4 w-4" /> Back
               </Button>
               <Button type="submit" className="w-full">
@@ -234,14 +264,18 @@ const SignUp = () => {
         <div className="mt-6 text-center">
           <p className="text-sm text-muted-foreground">
             Already have an account?{" "}
-            <Button variant="link" className="p-0 h-auto" onClick={() => router.push("/signin")}>
+            <Button
+              variant="link"
+              className="h-auto p-0"
+              onClick={() => router.push("/signin")}
+            >
               Sign In
             </Button>
           </p>
         </div>
       </Card>
     </div>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;

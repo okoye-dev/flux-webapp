@@ -35,8 +35,8 @@ const NotificationConfigurationForm: FC<IProps> = ({
   // post to api
   const configureNotifications = async () => {
     try {
-      // Extension officer authentication
-      const username = "extension_officer_001";
+      // Farmer authentication
+      const username = "farmer_001";
       const password = "your-password";
       const basicAuth = btoa(`${username}:${password}`);
 
@@ -103,7 +103,7 @@ const NotificationConfigurationForm: FC<IProps> = ({
           onChange={handleChange}
         />
       </div>
-      
+
       <div className="space-y-2">
         <Label htmlFor="alertTypes">Alert Types</Label>
         <Input

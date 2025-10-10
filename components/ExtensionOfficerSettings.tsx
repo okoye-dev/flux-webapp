@@ -10,10 +10,10 @@ import CopyLink from "./CopyLink";
 
 const ExtensionOfficerSettings = () => {
   const [isCopied, setIsCopied] = useState(false);
-  const officerId = "EXT_OFFICER_001";
+  const accountId = "FARMER_001";
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(officerId);
+      await navigator.clipboard.writeText(accountId);
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 2000);
     } catch (err) {
@@ -25,10 +25,10 @@ const ExtensionOfficerSettings = () => {
       <div className="flex w-[80%] flex-col justify-center gap-4 align-middle">
         <Image className="self-center" src={Key} alt="" />
         <p>
-          Your Extension Officer ID is ready! Use this to access farmer data and
-          manage agricultural advisory services.
+          Your Account ID is ready! Use this to access your farming data and
+          manage your agricultural advisory services.
         </p>
-        <CopyLink link={officerId} />
+        <CopyLink link={accountId} />
       </div>
     </div>
   );

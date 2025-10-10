@@ -7,7 +7,7 @@ interface IProps {}
 const ExtensionSettings: FC<IProps> = (props) => {
   return (
     <div className="w-full px-10">
-      <Header name={"Extension Officer Settings"} />
+      <Header name={"Account Settings"} />
       <ExtensionOfficerSettings />
     </div>
   );

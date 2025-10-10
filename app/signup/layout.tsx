@@ -3,8 +3,8 @@ import "../globals.css";
 import localFont from "next/font/local";
 
 export const metadata: Metadata = {
-  title: "Sign Up - FarmAdvisor",
-  description: "Create your farmer account on FarmAdvisor",
+  title: "Sign Up - AgroSense",
+  description: "Create your farmer account on AgroSense",
 };
 
 const generalSans = localFont({

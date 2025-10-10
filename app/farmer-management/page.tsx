@@ -10,7 +10,7 @@ const FarmerManagement: FC<IProps> = (props) => {
 
   const getFarmers = async () => {
     try {
-      const username = "extension_officer_001";
+      const username = "farmer_001";
       const password = "your-password";
       const basicAuth = btoa(`${username}:${password}`);
 
