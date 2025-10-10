@@ -1,6 +1,7 @@
 "use client";
 import React, { FC, ReactNode, useState } from "react";
-import Input from "./Input"; // Adjust the path as necessary
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 import FarmerRegistrationSuccess from "./FarmerRegistrationSuccess";
 
 interface IProps {
@@ -79,46 +80,56 @@ const FarmerRegistrationForm: FC<IProps> = ({ onClose, trigger }) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 font-medium">
-      <Input
-        placeholder="Enter farmer's full name"
-        id="farmerName"
-        label="Farmer Name"
-        formData={formData.farmerName}
-        handleChange={handleChange}
-      />
+      <div className="space-y-2">
+        <Label htmlFor="farmerName">Farmer Name</Label>
+        <Input
+          placeholder="Enter farmer's full name"
+          id="farmerName"
+          value={formData.farmerName}
+          onChange={handleChange}
+        />
+      </div>
 
-      <Input
-        placeholder="Enter phone number"
-        id="phoneNumber"
-        label="Phone Number"
-        formData={formData.phoneNumber}
-        handleChange={handleChange}
-      />
+      <div className="space-y-2">
+        <Label htmlFor="phoneNumber">Phone Number</Label>
+        <Input
+          placeholder="Enter phone number"
+          id="phoneNumber"
+          value={formData.phoneNumber}
+          onChange={handleChange}
+        />
+      </div>
 
-      <Input
-        placeholder="Enter location/village"
-        id="location"
-        label="Location"
-        formData={formData.location}
-        handleChange={handleChange}
-      />
+      <div className="space-y-2">
+        <Label htmlFor="location">Location</Label>
+        <Input
+          placeholder="Enter location/village"
+          id="location"
+          value={formData.location}
+          onChange={handleChange}
+        />
+      </div>
 
-      <Input
-        placeholder="Enter crop type (e.g., maize, rice)"
-        id="cropType"
-        label="Crop Type"
-        formData={formData.cropType}
-        handleChange={handleChange}
-      />
+      <div className="space-y-2">
+        <Label htmlFor="cropType">Crop Type</Label>
+        <Input
+          placeholder="Enter crop type (e.g., maize, rice)"
+          id="cropType"
+          value={formData.cropType}
+          onChange={handleChange}
+        />
+      </div>
 
-      <Input
-        type="number"
-        placeholder="Enter farm size in acres"
-        id="farmSize"
-        label="Farm Size (acres)"
-        formData={formData.farmSize}
-        handleChange={handleChange}
-      />
+      <div className="space-y-2">
+        <Label htmlFor="farmSize">Farm Size (acres)</Label>
+        <Input
+          type="number"
+          placeholder="Enter farm size in acres"
+          id="farmSize"
+          value={formData.farmSize}
+          onChange={handleChange}
+        />
+      </div>
 
       <button
         type="submit"
