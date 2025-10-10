@@ -34,6 +34,8 @@ const Navbar: FC<IProps> = ({ className }: IProps) => {
   const pathname = usePathname();
 
   const isAdminPage = pathname === "/admin";
+  const isSigninPage = pathname === "/signin";
+  const isSignupPage = pathname === "/signup";
 
   const handleLogout = () => {
     localStorage.clear();
@@ -43,6 +45,11 @@ const Navbar: FC<IProps> = ({ className }: IProps) => {
     });
     router.push("/");
   };
+
+  // Hide navbar on signin/signup pages
+  if (isSigninPage || isSignupPage) {
+    return null;
+  }
 
   return (
     <>

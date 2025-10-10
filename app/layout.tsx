@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
-import Navbar from "@/components/Navbar";
-import { Toaster } from "@/components/ui/toaster";
+import ClientLayout from "@/components/ClientLayout";
 
 export const metadata: Metadata = {
   title: "AgroSense - Smart Farming Platform",
@@ -54,13 +53,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${generalSans.variable}`}>
-      <body className="relative overflow-x-hidden font-generalSans leading-[1.25rem] tracking-tight text-black">
-        <Navbar />
-        <div className="mx-auto max-w-[1440px] px-6">
-          {children}
-          <Toaster />
-        </div>
-      </body>
+      <ClientLayout>{children}</ClientLayout>
     </html>
   );
 }
