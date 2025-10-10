@@ -1,13 +1,13 @@
-# Flux Dashboard
+# AgroSense Dashboard
 
-Extension officer dashboard for AI-powered agricultural advisory system.
+AI-powered agricultural advisory system for farmers.
 
 ## Features
 
-- **Farmer Management** - Register and manage farmers
-- **Activity Monitoring** - Track farmer reports and activities
-- **Settings** - Extension officer configuration
-- **Notifications** - Alert management
+- **Smart Farming** - AI-powered agricultural advice
+- **Weather Forecasting** - Real-time weather updates
+- **Market Insights** - Current prices and trends
+- **Crop Management** - Track and optimize farming operations
 
 ## Getting Started
 
